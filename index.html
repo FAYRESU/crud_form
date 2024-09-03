@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จัดการหลักสูตร In-house Training</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+   <div id="app">
+      <h1>จัดการหลักสูตร In-house Training</h1>
+
+      <!-- Search Box -->
+      <div class="search-container">
+        <input type="text" class="search-box" placeholder="ค้นหาหลักสูตร...">
+      </div>
+
+      <!-- Add New Course Button -->
+      <button class="add-button" @click="addCourse">เพิ่มหลักสูตรใหม่</button>
+
+      <!-- Alert Message -->
+      <div v-if="showAlert" :class="['alert', alertType]">{{ alertMessage }}</div>
+
+      <!-- Form for Adding or Editing Courses -->
+      <div v-if="showForm" class="form-container">
+        <form @submit.prevent="submitForm">
+          <label for="courseName">ชื่อหลักสูตร:</label>
+          <input type="text" id="courseName" v-model="course.name" required>
+          
+          <label for="courseCategory">หมวดหลักสูตร:</label>
+          <input type="text" id="courseCategory" v-model="course.category" required>
+          
+          <label for="courseInstructor">วิทยากร:</label>
+          <input type="text" id="courseInstructor" v-model="course.instructor" required>
+          
+          <label for="courseDays">จำนวนวัน:</label>
+          <input type="number" id="courseDays" v-model="course.days" required>
+      
+          <label for="courseDetail">รายละเอียด:</label>
+          <textarea id="courseDetail" v-model="course.detail" required></textarea>
+          
+          <div class="form-buttons">
+            <button type="submit" class="save-button">{{ editIndex === -1 ? 'บันทึก' : 'อัปเดต' }}</button>
+            <button type="button" class="cancel-button" @click="cancelForm">ยกเลิก</button>
+          </div>
+        </form>
+      </div>
+      
+      <!-- Course Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>เลือก</th>
+            <th>ลำดับ</th>
+            <th>ชื่อหลักสูตร</th>
+            <th>หมวดหลักสูตร</th>
+            <th>วิทยากร</th>
+            <th>จำนวนวัน</th>
+            <th>รายละเอียด</th>
+            <th>การกระทำ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(course, index) in courses" :key="index">
+            <td>
+              <input type="checkbox" v-model="course.selected">
+            </td>
+            <td>{{ index + 1 }}</td>
+            <td>{{ course.name }}</td>
+            <td>{{ course.category }}</td>
+            <td>{{ course.instructor }}</td>
+            <td>{{ course.days }} วัน</td>
+            <td>{{ course.detail }}</td>
+            <td>
+              <button class="select-button" @click.stop="selectCourse(index)">เลือก</button>
+              <button class="edit-button" @click.stop="editCourse(index)">แก้ไข</button>
+              <button class="delete-button" @click.stop="deleteCourse(index)">ลบ</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          courses: [],
+          course: {
+            name: '',
+            category: '',
+            instructor: '',
+            days: '',
+            detail: '',
+            selected: false
+          },
+          editIndex: -1,
+          alertMessage: '',
+          showAlert: false,
+          alertType: '',
+          showForm: false
+        },
+        methods: {
+          addCourse() {
+            this.resetForm();
+            this.showForm = true;
+          },
+          submitForm() {
+            if (this.editIndex === -1) {
+              this.courses.push({ ...this.course });
+              this.setAlert('เพิ่มหลักสูตรสำเร็จ', 'success');
+            } else {
+              Vue.set(this.courses, this.editIndex, { ...this.course });
+              this.setAlert('อัปเดตหลักสูตรสำเร็จ', 'success');
+            }
+            this.resetForm();
+            this.showForm = false;
+          },
+          editCourse(index) {
+            this.course = { ...this.courses[index] };
+            this.editIndex = index;
+            this.showForm = true;
+          },
+          deleteCourse(index) {
+            if (confirm('คุณต้องการลบหลักสูตรนี้หรือไม่?')) {
+              this.courses.splice(index, 1);
+              this.setAlert('ลบหลักสูตรสำเร็จ', 'danger');
+              if (this.editIndex === index) {
+                this.resetForm();
+              }
+            }
+          },
+          selectCourse(index) {
+            if (this.courses[index].selected) {
+              alert(`คุณได้ลงทะเบียนในหลักสูตร: ${this.courses[index].name}`);
+              this.courses[index].selected = false; // ยกเลิกการเลือกหลังจากแจ้งเตือน
+            } else {
+              alert('กรุณาเลือก checkbox เพื่อทำการลงทะเบียน');
+            }
+          },
+          cancelForm() {
+            this.showForm = false;
+            this.resetForm();
+          },
+          resetForm() {
+            this.course = {
+              name: '',
+              category: '',
+              instructor: '',
+              days: '',
+              detail: '',
+              selected: false
+            };
+            this.editIndex = -1;
+          },
+          setAlert(message, type) {
+            this.alertMessage = message;
+            this.alertType = type;
+            this.showAlert = true;
+            setTimeout(() => {
+              this.showAlert = false;
+            }, 3000);
+          }
+        }
+      });
+    </script>
+</body>
+</html>

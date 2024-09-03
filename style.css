@@ -1,0 +1,258 @@
+/* การตั้งค่าพื้นฐาน */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* ปุ่มหลัก */
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+/* ปุ่มเพิ่มหลักสูตร */
+.add-button {
+  background-color: #28a745;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.add-button:hover {
+  background-color: #218838;
+}
+
+/* ปุ่มบันทึก */
+.save-button {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.save-button:hover {
+  background-color: #0069d9;
+}
+
+/* ปุ่มยกเลิก */
+.cancel-button {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
+/* ปุ่มเลือก */
+.select-button {
+  background-color: #17a2b8;
+  color: #fff;
+}
+
+.select-button:hover {
+  background-color: #138496;
+}
+
+/* ปุ่มแก้ไข */
+.edit-button {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.edit-button:hover {
+  background-color: #e0a800;
+}
+
+/* ปุ่มลบ */
+.delete-button {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* ฟอร์ม */
+.form-container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+.form-buttons {
+  margin-top: 20px;
+  text-align: right;
+}
+
+/* ตาราง */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+table th,
+table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #dee2e6;
+}
+
+table th {
+  background-color: #343a40;
+  color: #fff;
+  font-weight: normal;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 5px;
+}
+
+/* ข้อความแจ้งเตือน */
+/* ข้อความแจ้งเตือนที่มุมขวาล่าง */
+.alert {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 15px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 16px;
+  margin: 0;
+  max-width: 300px; /* ปรับขนาดของกล่องข้อความ */
+  z-index: 1000; /* ให้ข้อความแจ้งเตือนอยู่เหนือองค์ประกอบอื่น */
+}
+
+.alert.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.alert.danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* เพิ่ม CSS สำหรับปุ่มลงทะเบียนทั้งหมด */
+.register-all-button {
+  background-color: #17a2b8;
+  color: #fff;
+  margin-top: 20px;
+  display: block;
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.register-all-button:hover {
+  background-color: #138496;
+}
+.form-container,
+table {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Box */
+.search-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.search-box {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Form styling similar to Netflix */
+.form-container {
+  background-color: #333;
+  color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-container label {
+  color: #ddd;
+  display: block;
+  margin-bottom: 8px;
+  font-weight: normal;
+}
+
+.form-container input,
+.form-container textarea {
+  background-color: #444;
+  border: 1px solid #555;
+  color: #fff;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.form-buttons button {
+  margin-left: 10px;
+}
+
+/* Updated Button Styles */
+.form-buttons .save-button,
+.form-buttons .cancel-button,
+.form-buttons .select-button,
+.form-buttons .edit-button,
+.form-buttons .delete-button {
+  font-size: 14px;
+}
+
+/* Button Colors */
+.select-button {
+  background-color: #e50914; /* Netflix red */
+  color: #fff;
+}
+
+.select-button:hover {
+  background-color: #f40612;
+}
